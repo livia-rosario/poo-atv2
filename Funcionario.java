@@ -1,42 +1,18 @@
-public class Pessoa {
-    protected String nome;
-    protected String cpf;
-    protected Data nasc;
+public class Funcionario extends Pessoa {
+    private double salario;
 
-    public Pessoa(String nome, String cpf, int dia, int mes, int ano) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.nasc = new Data(dia,mes,ano);
+    public Funcionario(String nome, String cpf, int dia, int mes, int ano, double salario) {
+        super(nome, cpf, dia, mes, ano);
+        this.salario = salario;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public Data getNasc() {
-        return nasc;
+    public double getSalario() { // INSPECIONAR!!!
+        return salario;
     }
     
     @Override
     public String toString() {
-        String resultado;
-        resultado = getNome() + " - CPF: " + getCpf();
-        return resultado;
+        return getNome() + " - CPF: " + getCpf();
     }
-    
-    public int getIdade(Data hoje) {
-        int idade = hoje.getAno() - nasc.getAno();
-        
-        if (hoje.getMes() < nasc.getMes() ||
-        (hoje.getMes() == nasc.getMes() && hoje.getDia() < nasc.getDia())) {
-        idade = idade - 1;
-        }
-        return idade;
-    }
-    
 
 }
