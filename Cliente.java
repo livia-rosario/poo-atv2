@@ -9,5 +9,10 @@ public class Cliente extends Pessoa {
     public String getEmail() {
         return email;
     }
+    
+    @Override
+    public String toString() {
+        return getNome() + " - CPF: " + getCpf() + " - " + getEmail();
+    }
 
 }
