@@ -20,5 +20,23 @@ public class Pessoa {
     public Data getNasc() {
         return nasc;
     }
+    
+    @Override
+    public String toString() {
+        String resultado;
+        resultado = getNome() + " - CPF: " + getCpf();
+        return resultado;
+    }
+    
+    public int getIdade(Data hoje) {
+        int idade = hoje.getAno() - nasc.getAno();
+        
+        if (hoje.getMes() < nasc.getMes() ||
+        (hoje.getMes() == nasc.getMes() && hoje.getDia() < nasc.getDia())) {
+        idade = idade - 1;
+        }
+        return idade;
+    }
+    
 
 }
