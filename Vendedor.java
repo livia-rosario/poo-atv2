@@ -44,4 +44,7 @@ public class Vendedor extends Funcionario{
         return super.toString();
     }
     
+    public ArrayList<Venda> getVendidos(){
+        return vendidos;
+    }
 }
