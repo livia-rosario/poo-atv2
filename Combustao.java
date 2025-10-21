@@ -10,12 +10,13 @@ public class Combustao extends Veiculo {
     }
     
     @Override
-    public int getAutonomia() { // Conferir também
+    public int getAutonomia() {
         return (int)Math.round(autonomiaComb);
     }
     
     @Override
     public String toString() {
+        // Honda HRV 2015/2016 - Autonomia: 400.0km (Combustão)
         return super.toString() + " (Combustão)";
     }
 }
