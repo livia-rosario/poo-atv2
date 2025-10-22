@@ -287,5 +287,18 @@ public class Entrada {
         }
         s.relatorio(vend);
     }
+    
+    // Para chamar os relatórios na main, e manter eles privados, precisamos de getters:
+    public void gerarRelatorioMensal(Sistema s){
+        relatorioMensal(s);
+    }
+    
+    public void gerarRelatorioAnual(Sistema s){
+        relatorioAnual(s);
+    }
+    
+    public void gerarRelatorioVendedor(Sistema s) {
+        relatorioVendedor(s);
+    }
 
 }
