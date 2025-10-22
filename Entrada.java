@@ -76,18 +76,16 @@ public class Entrada {
                 "1) Cadastrar Cliente\n" +
                 "2) Cadastrar Vendedor\n" +
                 "3) Cadastrar Gerente\n" +
-                "4) Cadastrar Veículo Elétrico\n" +
-                "6) Cadastrar Veículo A Combustão\n" +
-                "7) Cadastrar Veículo Híbrido\n" +
-                "8) Cadastrar Venda\n" +
-                "9) Histórico de Vendas Mensal\n" +
-                "10) Histórico de Vendas Anual\n" +
-                "11) Histórico de Vendas do Vendedor:\n" +
+                "4) Cadastrar Veículo\n" +
+                "5) Cadastrar Venda\n" +
+                "6) Relatório de Vendas Mensal\n" +
+                "7) Relatório de Vendas Anual\n" +
+                "8) Relatório de Vendas do Vendedor:\n" +
                 "0) Sair\n";
 
         int op = this.lerInteiro(msg);
 
-        while (op < 0 || op > 11) {
+        while (op < 0 || op > 8) {
             System.out.println("Opção inválida. Tente novamente: ");
             op = this.lerInteiro(msg);
         }
@@ -135,7 +133,7 @@ public class Entrada {
         double salario = this.lerDouble("Digite o salário mensal fixo do vendedor: ");
         double comissao = this.lerDouble("Digite o percentual de comissão deste vendedor: ");
 
-        if (s.localizarCliente(cpf) == null) { // Garantindo que o não CPF esteja duplicado.
+        if (s.localizarVendedor(cpf) == null) { // Garantindo que o não CPF esteja duplicado.
             Vendedor v = new Vendedor(nome, cpf, dia, mes, ano,salario, comissao);
             s.adicionar(v);
         }
@@ -151,11 +149,11 @@ public class Entrada {
     public void cadGerente(Sistema s) {
         s.listarGerentes();
 
-        String nome = this.lerLinha("Digite o nome do vendedor: ");
-        String cpf = this.lerLinha("Digite o cpf do vendedor: ");
-        int dia = this.lerInteiro("Digite o dia do nascimento do vendedor: ");
-        int mes = this.lerInteiro("Digite o mês do nascimento do vendedor: ");
-        int ano = this.lerInteiro("Digite o ano do nascimento do vendedor: ");
+        String nome = this.lerLinha("Digite o nome do gerente: ");
+        String cpf = this.lerLinha("Digite o cpf do gerente: ");
+        int dia = this.lerInteiro("Digite o dia do nascimento do gerente: ");
+        int mes = this.lerInteiro("Digite o mês do nascimento do gerente: ");
+        int ano = this.lerInteiro("Digite o ano do nascimento do gerente: ");
         double salario = this.lerDouble("Digite o salário mensal fixo do gerente: ");
         String senha = this.lerLinha("Digite a senha do gerente: ");
 
@@ -214,6 +212,80 @@ public class Entrada {
                 break;
         }
         
+    }
+
+    /**
+     * Lê os dados de uma nova Venda (vendedor, veículo, cliente,
+     * desconto, data e chassi), cria o objeto e registra no sistema.
+     * @param s Um objeto da classe Sistema
+     */
+    public void cadVenda(Sistema s) {
+        System.out.println("Vendedores cadastrados:");
+        for (Vendedor v : s.getVendedores()) {
+            System.out.println(v.getNome() + " - CPF: " + v.getCpf());
+        }
+
+        String cpfVend = this.lerLinha("Digite o CPF do vendedor: ");
+        Vendedor vend = s.localizarVendedor(cpfVend);
+        if (vend == null) {
+            System.out.println("Vendedor não encontrado!");
+            return;
+        }
+
+        System.out.println("Veiculos cadastrados:");
+        for (int i = 0; i < s.getVeiculos().size(); i++) {
+            Veiculo vx = s.getVeiculos().get(i);
+            System.out.println((i + 1) + ") " + vx);
+        }
+
+        int opc = this.lerInteiro("Escolha um veículo pelo número: ");
+        if (opc < 1 || opc > s.getVeiculos().size()) {
+            System.out.println("Opção de veículo inválida!");
+            return;
+        }
+        Veiculo vei = s.getVeiculos().get(opc - 1);
+
+        System.out.println("Clientes cadastrados:");
+        for (Cliente c : s.getClientes()) {
+            System.out.println(c);
+        }
+
+        String cpfCli = this.lerLinha("Digite o CPF do cliente: ");
+        Cliente cli = s.localizarCliente(cpfCli);
+        if (cli == null) {
+            System.out.println("Cliente não encontrado!");
+            return;
+        }
+
+        double desconto = this.lerDouble("Digite o desconto (em R$): ");
+        int dia = this.lerInteiro("Digite o dia da venda: ");
+        int mes = this.lerInteiro("Digite o mês da venda: ");
+        int ano = this.lerInteiro("Digite o ano da venda: ");
+        String chassi = this.lerLinha("Digite o chassi do veículo: ");
+
+        Venda v = new Venda(vei, cli, desconto, new Data(dia, mes, ano), chassi);
+        s.atribuirVendaVendedor(v, vend);
+    }
+
+    private void relatorioMensal(Sistema s) {
+        int mes = this.lerInteiro("Digite o mês: ");
+        int ano = this.lerInteiro("Digite o ano: ");
+        s.relatorio(mes, ano);
+    }
+
+    private void relatorioAnual(Sistema s) {
+        int ano = this.lerInteiro("Digite o ano: ");
+        s.relatorio(ano);
+    }
+
+    private void relatorioVendedor(Sistema s) {
+        String cpf = this.lerLinha("Digite o CPF do vendedor: ");
+        Vendedor vend = s.localizarVendedor(cpf);
+        if (vend == null) {
+            System.out.println("Vendedor não encontrado!");
+            return;
+        }
+        s.relatorio(vend);
     }
 
 }
