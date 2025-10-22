@@ -44,6 +44,6 @@ public class Veiculo {
     @Override
     public String toString() {
         return getMarca() + " " + getModelo() + " " + getAnoFab() + "/" +
-               getAnoMod() + " - Autonomia: " + getAutonomia() + "km";
+               getAnoMod() + " - Autonomia: " + getAutonomia() + ".0km";
     }
 }
