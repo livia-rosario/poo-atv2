@@ -20,11 +20,11 @@ public class Main {
                 case 5:
                     io.cadVenda(s); break;
                 case 6:
-                    io.relatorioMensal(s); break;
+                    io.gerarRelatorioMensal(s); break;
                 case 7:
-                    io.relatorioAnual(s); break;
+                    io.gerarRelatorioAnual(s); break;
                 case 8:
-                    io.relatorioVendedor(s); break;
+                    io.gerarRelatorioVendedor(s); break;
             }
 
             op = io.menu();
