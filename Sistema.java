@@ -168,7 +168,7 @@ public class Sistema {
     // Relatório por vendedor
     public void relatorio(Vendedor vendedor) {
         System.out.println("*** RELATÓRIO DE VENDAS DO VENDEDOR ***");
-        System.out.println("Vendas do vendedor " + vendedor.getNome() + " :");
+        System.out.println(" Vendas do vendedor " + vendedor.getNome() + " :");
         double total = 0;
         
         for (Venda venda: vendedor.getVendidos()) {
@@ -184,6 +184,7 @@ public class Sistema {
     // public void listarTurmas() {
     //}
 }
+
 
 
 
