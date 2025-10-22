@@ -18,7 +18,7 @@ public class Vendedor extends Funcionario{
         double total = 0;
         for (Venda v: vendidos) {
             if (v.getData().getMes() == mes && v.getData().getAno() == ano) {
-                total =  total + (v.valor() * comissao);
+                total += v.valor() * (comissao / 100);
             }
         }
         return total;
@@ -28,7 +28,7 @@ public class Vendedor extends Funcionario{
         double total = 0;
         for (Venda v: vendidos) {
             if (v.getData().getAno() == ano) {
-                total = total + (v.valor() * comissao);
+                total += v.valor() * (comissao / 100);
             }
         }
         return total;
