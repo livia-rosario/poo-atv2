@@ -131,7 +131,7 @@ public class Sistema {
     
     // Relatório mensal
     public void relatorio(int mes, int ano) {
-        System.out.println("*** RELATÓRIO DE VENDAS MENSAL DE " + mes + "/" + ano + " ***");
+        System.out.println("RELATÓRIO DE VENDAS MENSAL DE " + mes + "/" + ano + ":");
         double total = 0;
         
         for (Vendedor v: vendedores) {
@@ -149,7 +149,7 @@ public class Sistema {
     
     // Relatório anual
     public void relatorio(int ano) {
-        System.out.println("*** RELATÓRIO DE VENDAS ANUAL DE " + ano + " ***");
+        System.out.println("RELATÓRIO DE VENDAS ANUAL DE " + ano + " ***");
         double total = 0;
         
         for (Vendedor v: vendedores) {
@@ -167,7 +167,7 @@ public class Sistema {
     
     // Relatório por vendedor
     public void relatorio(Vendedor vendedor) {
-        System.out.println("*** RELATÓRIO DE VENDAS DO VENDEDOR ***");
+        System.out.println("RELATÓRIO DE VENDAS DO VENDEDOR ***");
         System.out.println(" Vendas do vendedor " + vendedor.getNome() + " :");
         double total = 0;
         
@@ -184,6 +184,7 @@ public class Sistema {
     // public void listarTurmas() {
     //}
 }
+
 
 
 
