@@ -15,24 +15,24 @@ public class Vendedor extends Funcionario{
     }
     
     public double comissaoTotal(int mes, int ano) {
-        double total = 0;
-        for (Venda v: vendidos) {
-            if (v.getData().getMes() == mes && v.getData().getAno() == ano) {
-                total += v.valor() * (comissao / 100);
-            }
+    double total = 0;
+    for (Venda v: vendidos) {
+        if (v.getData().getMes() == mes && v.getData().getAno() == ano) {
+            total += v.getVeiculo().getValor() * (comissao / 100);  // Mudança aqui!
         }
-        return total;
     }
+    return total;
+}
     
     public double comissaoTotal(int ano) {
-        double total = 0;
-        for (Venda v: vendidos) {
-            if (v.getData().getAno() == ano) {
-                total += v.valor() * (comissao / 100);
-            }
+    double total = 0;
+    for (Venda v: vendidos) {
+        if (v.getData().getAno() == ano) {
+            total += v.getVeiculo().getValor() * (comissao / 100);  // Mudança aqui!
         }
-        return total;
     }
+    return total;
+}
     
     @Override
     public double getSalario(int mes, int ano) {
