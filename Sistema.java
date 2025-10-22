@@ -137,8 +137,7 @@ public class Sistema {
         for (Vendedor v: vendedores) {
             for (Venda venda : v.getVendidos()) {
                 if (venda.getData().getAno() == ano && venda.getData().getMes() == mes) {
-                    System.out.println("Vendedor: " + v.getNome() + " (Salário "
-                            + "neste mês: R$" + v.getSalario(mes, ano) + ")");
+                    System.out.println("Vendedor: " + v.getNome() + " (Salário neste mês: R$" + v.getSalario(mes, ano) + ")");
                     System.out.println(venda);
                     System.out.println("***************************************");
                     total = total + (venda.valor());
@@ -185,5 +184,6 @@ public class Sistema {
     // public void listarTurmas() {
     //}
 }
+
 
 
