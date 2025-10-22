@@ -131,59 +131,59 @@ public class Sistema {
     
     // Relatório mensal
     public void relatorio(int mes, int ano) {
-        System.out.println("RELATÓRIO DE VENDAS MENSAL DE " + mes + "/" + ano + ":");
-        double total = 0;
-        
-        for (Vendedor v: vendedores) {
-            for (Venda venda : v.getVendidos()) {
-                if (venda.getData().getAno() == ano && venda.getData().getMes() == mes) {
-                    System.out.println("Vendedor: " + v.getNome() + " (Salário neste mês: RS" + v.getSalario(mes, ano) + ")");
-                    System.out.println(venda);
-                    System.out.println("***************************************");
-                    total = total + (venda.valor());
-                }
+    System.out.println("RELATÓRIO DE VENDAS MENSAL DE " + mes + "/" + ano + ":");
+    double total = 0;
+
+    for (Vendedor v : vendedores) {
+        for (Venda venda : v.getVendidos()) {
+            if (venda.getData().getAno() == ano && venda.getData().getMes() == mes) {
+                System.out.println("Vendedor: " + v.getNome() + " (Salário neste mês: RS" + v.getSalario(mes, ano) + ")");
+                System.out.println(venda);
+                System.out.println("***************************************");
+                total += venda.valor();
             }
         }
-        System.out.println("Total: R$ " + total);
     }
+    System.out.println("Total: R$" + total);
+}
     
     // Relatório anual
     public void relatorio(int ano) {
-        System.out.println("RELATÓRIO DE VENDAS ANUAL DE " + ano + " ***");
-        double total = 0;
-        
-        for (Vendedor v: vendedores) {
-            for (Venda venda: v.getVendidos()) {
-                if(venda.getData().getAno() == ano) {
-                    System.out.println("Vendedor: " + v.getNome());
-                    System.out.println(venda);
-                    System.out.println("***************************************");
-                    total = total + (venda.valor());
-                }
+    System.out.println("RELATÓRIO DE VENDAS ANUAL DE " + ano + ":");
+    double total = 0;
+
+    for (Vendedor v : vendedores) {
+        for (Venda venda : v.getVendidos()) {
+            if (venda.getData().getAno() == ano) {
+                System.out.println("Vendedor: " + v.getNome());
+                System.out.println(venda);
+                System.out.println("***************************************");
+                total += venda.valor();
             }
         }
-        System.out.println("Total: R$ " + total);
     }
+    System.out.println("Total: R$" + total);
+}
     
-    // Relatório por vendedor
     public void relatorio(Vendedor vendedor) {
-        System.out.println("RELATÓRIO DE VENDAS DO VENDEDOR ***");
-        System.out.println(" Vendas do vendedor " + vendedor.getNome() + " :");
-        double total = 0;
-        
-        for (Venda venda: vendedor.getVendidos()) {
-            System.out.println(venda);
-            System.out.println("***************************************");
-            total = total + (venda.valor());
-        }
-        
-        System.out.println("Total: R$" + total);
+    System.out.println("RELATÓRIO DE VENDAS DO VENDEDOR:");
+    System.out.println(" Vendas do vendedor " + vendedor.getNome() + " :");
+    double total = 0;
+
+    for (Venda venda : vendedor.getVendidos()) {
+        System.out.println(venda);
+        System.out.println("***************************************");
+        total += venda.valor();
     }
+
+    System.out.println("Total: R$" + total);
+}
     
     // Listar turmas (Não entendi muito bem)
     // public void listarTurmas() {
     //}
 }
+
 
 
 
