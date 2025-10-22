@@ -119,5 +119,101 @@ public class Entrada {
             System.out.println("Erro: CPF duplicado. Cliente não adicionado.");
         }
     }
+    
+    /**
+     * Lê os dados de um novo Vendedor e cadastra-o no sistema.
+     * @param s: Um objeto da classe Sistema
+     */
+    public void cadVendedor(Sistema s) {
+        s.listarVendedores();
+
+        String nome = this.lerLinha("Digite o nome do vendedor: ");
+        String cpf = this.lerLinha("Digite o cpf do vendedor: ");
+        int dia = this.lerInteiro("Digite o dia do nascimento do vendedor: ");
+        int mes = this.lerInteiro("Digite o mês do nascimento do vendedor: ");
+        int ano = this.lerInteiro("Digite o ano do nascimento do vendedor: ");
+        double salario = this.lerDouble("Digite o salário mensal fixo do vendedor: ");
+        double comissao = this.lerDouble("Digite o percentual de comissão deste vendedor: ");
+
+        if (s.localizarCliente(cpf) == null) { // Garantindo que o não CPF esteja duplicado.
+            Vendedor v = new Vendedor(nome, cpf, dia, mes, ano,salario, comissao);
+            s.adicionar(v);
+        }
+        else {
+            System.out.println("Erro: CPF duplicado. Vendedor não adicionado.");
+        }
+    }
+    
+    /**
+     * Lê os dados de um novo Gerente e cadastra-o no sistema.
+     * @param s: Um objeto da classe Sistema
+     */
+    public void cadGerente(Sistema s) {
+        s.listarGerentes();
+
+        String nome = this.lerLinha("Digite o nome do vendedor: ");
+        String cpf = this.lerLinha("Digite o cpf do vendedor: ");
+        int dia = this.lerInteiro("Digite o dia do nascimento do vendedor: ");
+        int mes = this.lerInteiro("Digite o mês do nascimento do vendedor: ");
+        int ano = this.lerInteiro("Digite o ano do nascimento do vendedor: ");
+        double salario = this.lerDouble("Digite o salário mensal fixo do gerente: ");
+        String senha = this.lerLinha("Digite a senha do gerente: ");
+
+        if (s.localizarGerente(cpf) == null) { // Garantindo que o não CPF esteja duplicado.
+            Gerente g = new Gerente(nome, cpf, dia, mes, ano,salario,senha);
+            s.adicionar(g);
+        }
+        else {
+            System.out.println("Erro: CPF duplicado. Gerente não adicionado.");
+        }
+    }
+    
+    public void cadVeiculo(Sistema s) {
+        s.listarVeiculos();
+
+        String marca = this.lerLinha("Digite a Marca do veículo: ");
+        String modelo = this.lerLinha("Digite o Modelo do veículo: ");
+        int anoFab = this.lerInteiro("Digite o ano de fabricação do veículo: ");
+        int mesFab = this.lerInteiro("Digite o mês de fabricação do veículo: ");
+        int anoMod = this.lerInteiro("Digite o ano do modelo do veículo: ");
+        double valor = this.lerDouble("Digite o valor do veículo: ");
+
+        int tipo = this.lerInteiro(
+            "Escolha o tipo do veículo: \n" +
+            "1) Elétrico\n" +
+            "2) Combustão\n" +
+            "3) Híbrido:\n"
+        );
+
+        Veiculo v;
+        v = null;
+
+        switch (tipo) {
+            case 1:
+                double autonomiaBat = this.lerDouble("Digite a autonomia da bateria (em km): ");
+                double capacidadeBat = this.lerDouble("Digite a capacidade da bateria (em kWh): ");
+                v = new Eletrico(marca, modelo, anoFab, mesFab, anoMod, valor, autonomiaBat, capacidadeBat);
+                s.adicionar(v);
+                break;
+            case 2:
+                double autonomiaComb = this.lerDouble("Digite a autonomia do motor (em km): ");
+                double capacidadeComb = this.lerDouble("Digite a capacidade do motor (em L): ");
+                v = new Combustao(marca, modelo, anoFab, mesFab, anoMod, valor, autonomiaComb, capacidadeComb);
+                s.adicionar(v);
+                break;
+            case 3:
+                double autComb = this.lerDouble("Digite a autonomia do motor (em km): ");
+                double capComb = this.lerDouble("Digite a capacidade do motor (em L): ");
+                double autBat = this.lerDouble("Digite a autonomia da bateria (em km): ");
+                double capBat = this.lerDouble("Digite a capacidade da bateria (em kWh): ");
+                v = new Hibrido(marca, modelo, anoFab, mesFab, anoMod, valor, autComb, capComb, autBat, capBat);
+                s.adicionar(v);
+                break;
+            default:
+                System.out.println("Opção inserida é inválida. Veículo não cadastrado.");
+                break;
+        }
+        
+    }
 
 }
